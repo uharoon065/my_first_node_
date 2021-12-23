@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+let port = process.env.port || 3000;
 let app = express();
 hbs.registerPartials(__dirname+"/views/partials")
 app.set('view engine','hbs')
@@ -14,9 +15,9 @@ app.use((req,res,next)=> {
     // console.log(Object.keys(req));
     next();
 });
-app.use((req,res,next)=> {
-    res.render("mantainance.hbs")
-})
+// app.use((req,res,next)=> {
+//     res.render("mantainance.hbs")
+// })
 app.use(express.static(__dirname+"/public"))
 hbs.registerHelper("getCurrentYear",()=> {
     return new Date().getFullYear(); // whatever yyou return from ththis functionn  will be availabel to  where ever you call  getCurrentDate
@@ -36,6 +37,6 @@ app.get("/about",(req,res)=> {
 app.get("/bad",(req,res)=> {
     res.send("something went wrong")
 })
-app.listen(3000,()=> {
-    console.log("the server is up at port 3000");
+app.listen(port,()=> {
+    console.log(`the server is up at port ${port}`);
 })
