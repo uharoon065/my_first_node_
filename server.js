@@ -24,6 +24,9 @@ hbs.registerHelper("getCurrentYear",()=> {
 });
 hbs.registerHelper("headingCapitalizer",(text)=> {
     return text.toUpperCase();
+});
+hbs.registerHelper('headingCapitalizer2',(text)=> {
+    return text.toUpperCase();
 })
 app.get("/",(req,res)=> {
     // res.send(`<h1> hello express !!</h1> <p> this a express web </p>`)
@@ -36,6 +39,9 @@ app.get("/about",(req,res)=> {
 })
 app.get("/bad",(req,res)=> {
     res.send("something went wrong")
+})
+app.get('/project',(req,res)=> {
+    res.render('project.hbs',{pageTitle : "projects"});
 })
 app.listen(port,()=> {
     console.log(`the server is up at port ${port}`);
